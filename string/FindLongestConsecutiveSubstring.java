@@ -1,9 +1,8 @@
 public class FindLongestConsecutiveString {
     public static void main(String... args) {
-
     }
 
-    private static findCharStreak(String s, int n) {
+    private static String findCharStreak(String s, int n) {
         char[] chars = s.toCharArray();
 
         Map<Character, Integer> charStreaks = new HashMap<>();
@@ -11,13 +10,15 @@ public class FindLongestConsecutiveString {
 
         currentStreak.append(chars[0]);
         for (int i = 1; i < chars.length; i++) {
-            if ( char[i] !=currentStreak.charAt(0)){
+            if (chars[i] != currentStreak.charAt(0)){
                 copyCharStreakToMap(currentStreak, charStreaks);
                 currentStreak = new StringBuilder();
             }
             currentStreak.append(chars[i]);
         }
         copyCharStreakToMap(currentStreak, charStreaks);
+
+        return getResult(charStreaks);
     }
 
     private static void copyCharStreakToMap(StringBuilder currentStreak, Map<Character, Object> charStreaks) {

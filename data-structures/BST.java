@@ -4,7 +4,7 @@ import java.util.Optional;
 public class BST {
     public static void main(String ...args) {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>(Integer::compare);
-        // TODO: Perform delete and mirror operations
+        // TODO: Perform delete operation, Implement Tree Traversals
         bst.insert(1);
         bst.insert(0);
         bst.insert(2);
@@ -42,7 +42,6 @@ class BinarySearchTree<T> {
         if (node == null) return 0;
         return 1 + Math.max(height(node.getLeft()), height(node.getRight()));
     }
-
     /* --- */
 
     /* Insert */
@@ -60,11 +59,9 @@ class BinarySearchTree<T> {
         } //Not implemented for equals
         return node;
     }
-
     /* --- */
 
     /* Utilities */
-
     /* Minimum Value Node */
     private Node<T> min(Node<T> node) {
         if (node.getLeft() == null) return node;
@@ -90,7 +87,6 @@ class BinarySearchTree<T> {
         node.setRight(deleteMax(node.getRight()));
         return node;
     }
-
     /* --- */
 
     /* Delete */
@@ -113,7 +109,6 @@ class BinarySearchTree<T> {
         }
         return node;
     }
-
     /* --- */
 
     /* Search */
@@ -130,6 +125,32 @@ class BinarySearchTree<T> {
     }
     /* --- */
 
+    /* Mirror */
+    public void mirror() {
+        mirror(root);
+    }
+
+    private void mirror(Node<T> node) {
+        if (node == null || (node.getLeft() == null && node.getRight() == null)) return;
+        mirror(node.getLeft());
+        mirror(node.getRight());
+        Node<T> temp = node.getRight();
+        node.setRight(node.getLeft());
+        node.setLeft(temp);
+    }
+    /* --- */
+
+    /* Tree Traversals */
+    public void inOrder() {
+        inOrder(root);
+    }
+
+    private void inOrder(Node<T> node) {
+        // visit(node.getLeft());
+        // visit(node);
+        // visit(node.getRight());
+    }
+    /* --- */
 }
 
 class Node<T> {
